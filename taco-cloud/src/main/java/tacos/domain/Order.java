@@ -8,6 +8,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.util.Date;
+
 /**
  * @Author WuRui
  * @ClassName Order
@@ -17,6 +19,10 @@ import org.hibernate.validator.constraints.CreditCardNumber;
  **/
 @Data
 public class Order {
+
+    private String id;
+
+    private Date placeAt;
 
     @NotBlank(message = "name is required")
     private String name;
