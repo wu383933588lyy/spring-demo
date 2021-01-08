@@ -8,7 +8,9 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author WuRui
@@ -20,9 +22,9 @@ import java.util.Date;
 @Data
 public class Order {
 
-    private String id;
+    private long id;
 
-    private Date placeAt;
+    private Date placedAt;
 
     @NotBlank(message = "name is required")
     private String name;
@@ -47,4 +49,10 @@ public class Order {
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
+
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addDesign(Taco design) {
+        this.tacos.add(design);
+    }
 }
