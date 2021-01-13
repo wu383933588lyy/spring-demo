@@ -1,6 +1,8 @@
 package com.test;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.Environment;
+import org.springframework.util.Assert;
 
 /**
  * @Author WuRui
@@ -12,9 +14,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSpring {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        System.out.println(ctx.getId());
-        TestBean testB1 = (TestBean) ctx.getBean("testB1");
-        testB1.test();
+        System.setProperty("spring.active.profile", "default");
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("${spring.active.profile}-beans.xml");
+
+        Environment environment = ctx.getEnvironment();
+        System.out.println(environment.getProperty("spring.active.profile"));
+        System.out.println(environment.getProperty("M2_HOME"));
+        System.out.println(environment.getProperty("GRADLE_USER_HOME"));
+        System.out.println(environment.getProperty("CLASSPATH"));
+        System.out.println(environment.getProperty("db.username"));
+        ctx.registerShutdownHook();
     }
 }
