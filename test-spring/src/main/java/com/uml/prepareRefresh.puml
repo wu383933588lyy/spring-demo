@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+AbstractApplicationContext -> AbstractApplicationContext : initPropertySources(): 初始化属性资源
+AbstractApplicationContext -> AbstractApplicationContext : getEnvironment().validateRequiredProperties(): 验证所有资源是否都是可解析
+
+@enduml
